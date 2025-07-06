@@ -1,14 +1,15 @@
 import mysql.connector
 from seed import connect_to_prodev
 
-def stream_users_in_batches(batch_size):
+
+def streamusersinbatches(batchsize):
     connection = connect_to_prodev()
     cursor = connection.cursor(dictionary=True)
     cursor.execute("SELECT * FROM user_data")
     batch = []
     for row in cursor:
         batch.append(row)
-        if len(batch) == batch_size:
+        if len(batch) == batchsize:
             yield batch
             batch = []
     if batch:
@@ -16,8 +17,8 @@ def stream_users_in_batches(batch_size):
     cursor.close()
     connection.close()
 
-def batch_processing(batch_size):
-    for batch in stream_users_in_batches(batch_size):
+def batch_processing(batchsize):
+    for batch in streamusersinbatches(batchsize):
         for user in batch:
             if int(user['age']) > 25:
                 print(user)
