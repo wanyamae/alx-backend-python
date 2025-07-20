@@ -5,13 +5,6 @@ Unit tests for utils.py functions.
 from parameterized import parameterized
 import unittest
 from unittest.mock import patch, Mock
-
-
-# Add parent directory to sys.path to allow importing utils
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from utils import access_nested_map, get_json, memoize
 
 class TestAccessNestedMap(unittest.TestCase):
