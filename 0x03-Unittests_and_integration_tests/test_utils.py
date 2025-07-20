@@ -31,7 +31,10 @@ class TestAccessNestedMap(unittest.TestCase):
     ) -> None:
         """Test that access_nested_map returns expected result for valid paths."""
         self.assertEqual(
-            access_nested_map(nested_map, path),
+            access_nested_map(
+                nested_map,
+                path
+            ),
             expected
         )
 
@@ -75,7 +78,7 @@ class TestGetJson(unittest.TestCase):
         test_payload: dict,
         mock_get: Mock
     ) -> None:
-        """Test that get_json returns expected payload and requests.get is called once."""
+        """Test that returns expected payload and requests.get is called once."""
         mock_get.return_value = Mock(json=Mock(return_value=test_payload))
         self.assertEqual(
             get_json(test_url),
@@ -107,6 +110,12 @@ class TestMemoize(unittest.TestCase):
             return_value=42
         ) as mock_method:
             obj = TestClass()
-            self.assertEqual(obj.a_property, 42)
-            self.assertEqual(obj.a_property, 42)
+            self.assertEqual(
+                obj.a_property,
+                42
+            )
+            self.assertEqual(
+                obj.a_property,
+                42
+            )
             mock_method.assert_called_once()
