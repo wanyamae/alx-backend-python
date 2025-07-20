@@ -2,10 +2,12 @@
 """
 Unit tests for utils.py functions.
 """
+
 from parameterized import parameterized
 import unittest
 from unittest.mock import patch, Mock
 from utils import access_nested_map, get_json, memoize
+
 
 class TestAccessNestedMap(unittest.TestCase):
     """Test cases for access_nested_map function."""
@@ -40,6 +42,7 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
         self.assertEqual(str(cm.exception), repr(path[-1]))
 
+
 class TestGetJson(unittest.TestCase):
     """Test cases for get_json function."""
 
@@ -59,11 +62,13 @@ class TestGetJson(unittest.TestCase):
         self.assertEqual(get_json(test_url), test_payload)
         mock_get.assert_called_once_with(test_url)
 
+
 class TestMemoize(unittest.TestCase):
     """Test cases for memoize decorator."""
 
     def test_memoize(self) -> None:
         """Test that memoize caches method result and calls underlying method only once."""
+
         class TestClass:
             """Class for testing memoize decorator."""
             def a_method(self: "TestClass") -> int:
