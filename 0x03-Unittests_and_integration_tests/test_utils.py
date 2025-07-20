@@ -78,7 +78,7 @@ class TestGetJson(unittest.TestCase):
         test_payload: dict,
         mock_get: Mock
     ) -> None:
-        """Test that returns expected payload and requests.get is called once."""
+        """Test that returns expected payload and is called once."""
         mock_get.return_value = Mock(
             json=Mock(
                 return_value=test_payload
@@ -88,7 +88,9 @@ class TestGetJson(unittest.TestCase):
             get_json(test_url),
             test_payload
         )
-        mock_get.assert_called_once_with(test_url)
+        mock_get.assert_called_once_with(
+            test_url
+        )
 
 
 class TestMemoize(unittest.TestCase):
