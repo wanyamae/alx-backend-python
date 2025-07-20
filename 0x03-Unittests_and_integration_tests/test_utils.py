@@ -79,7 +79,11 @@ class TestGetJson(unittest.TestCase):
         mock_get: Mock
     ) -> None:
         """Test that returns expected payload and requests.get is called once."""
-        mock_get.return_value = Mock(json=Mock(return_value=test_payload))
+        mock_get.return_value = Mock(
+            json=Mock(
+                return_value=test_payload
+            )
+        )
         self.assertEqual(
             get_json(test_url),
             test_payload
