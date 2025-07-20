@@ -29,7 +29,7 @@ class TestAccessNestedMap(unittest.TestCase):
         path: tuple,
         expected
     ) -> None:
-        """Test that access_nested_map returns expected result for valid paths."""
+        """Test that returns expected result for valid paths."""
         self.assertEqual(
             access_nested_map(
                 nested_map,
