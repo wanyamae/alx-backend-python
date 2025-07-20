@@ -15,7 +15,12 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand([
         ("simple", {"a": 1}, ("a",), 1),
         ("nested_dict", {"a": {"b": 2}}, ("a",), {"b": 2}),
-        ("nested_path", {"a": {"b": 2}}, ("a", "b"), 2),
+        (
+            "nested_path",
+            {"a": {"b": 2}},
+            ("a", "b"),
+            2
+        ),
     ])
     def test_access_nested_map(
         self,
@@ -32,7 +37,11 @@ class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand([
         ("missing_key", {}, ("a",)),
-        ("missing_nested_key", {"a": 1}, ("a", "b")),
+        (
+            "missing_nested_key",
+            {"a": 1},
+            ("a", "b")
+        ),
     ])
     def test_access_nested_map_exception(
         self,
@@ -54,7 +63,10 @@ class TestGetJson(unittest.TestCase):
 
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
-        ("http://holberton.io", {"payload": False}),
+        (
+            "http://holberton.io",
+            {"payload": False}
+        ),
     ])
     @patch("utils.requests.get")
     def test_get_json(
@@ -76,7 +88,7 @@ class TestMemoize(unittest.TestCase):
     """Test cases for memoize decorator."""
 
     def test_memoize(self) -> None:
-        """Test that memoize caches method result and calls underlying method only once."""
+        """Test that memoize caches method result."""
 
         class TestClass:
             """Class for testing memoize decorator."""
@@ -89,7 +101,11 @@ class TestMemoize(unittest.TestCase):
                 """Returns result of a_method, memoized."""
                 return self.a_method()
 
-        with patch.object(TestClass, "a_method", return_value=42) as mock_method:
+        with patch.object(
+            TestClass,
+            "a_method",
+            return_value=42
+        ) as mock_method:
             obj = TestClass()
             self.assertEqual(obj.a_property, 42)
             self.assertEqual(obj.a_property, 42)
